@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Gk4kt0RSnAYhydB+4Q1A9vN9RZhndQTStgf3gtFnD7p6hNi8xEXLn3DMie/GUw+SyNeef4Eh+UOxGXu3fMX5XQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\sammo\\OneDrive\\2022\\BCDE222\\ChessMaze\\ChessMaze.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sammo\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512"
+  ],
+  "logs": []
+}
