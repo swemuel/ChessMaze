@@ -11,13 +11,35 @@ namespace ChessMaze
             // Display empty chess board
             printBoard(newBoard);
 
+            // Set the co-ordinates for the current piece/cell
+            Cell currentCell = setCurrentCell();
+            currentCell.Occupied = true;
+
+            // calc all legal moves from current piece
+            newBoard.NextLegalMove(currentCell, (Part)'n');
+
+            // Display board with entered current cell + legal moves
+            printBoard(newBoard);
+
             // close on next key press
             Console.ReadLine();
         }
 
+        private static Cell setCurrentCell()
+        {
+            // get x and y co-ords from user and return the cell location
+            Console.WriteLine("Enter the current row number");
+            int currentRow = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter the current row number");
+            int currentCol = int.Parse(Console.ReadLine());
+
+            return newBoard.mazeGrid[currentRow, currentCol];
+        }
+
         private static void printBoard(Board newBoard)
         {
-            // display chess board: 'X' = current piece, '+' = legal next move, E = empty
+            // display chess board: 'X' = current piece, '+' = legal next move, . = empty
             for (int x = 0; x < newBoard.Size; x++)
             {
                 for (int y = 0; y < newBoard.Size; y++)
@@ -34,7 +56,7 @@ namespace ChessMaze
                     }
                     else
                     {
-                        Console.Write("E");
+                        Console.Write(".");
                     }
                 }
                 Console.WriteLine();

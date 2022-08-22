@@ -71,6 +71,7 @@ namespace ChessMaze
                 case (Part)'r':
                     break;
             }
+            mazeGrid[currentCell.Row, currentCell.Col].Occupied = true;
         }
     }
 }
