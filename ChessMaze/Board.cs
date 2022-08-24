@@ -33,7 +33,7 @@ namespace ChessMaze
             }
         }
 
-        public void NextLegalMove (Cell currentCell, Part piece)
+        public void NextLegalMove (int nextRow, int nextCol, Cell currentCell, Part piece)
         {
             //reset board
             for (int x = 0; x < Size; x++)
@@ -44,11 +44,15 @@ namespace ChessMaze
                     mazeGrid[x, y].IsLegal = false;
                 }
             }
-
+            // if  mazeGrid[nextRow, nextCol] isValid {check if the knight can move there}
             // display legal moves for each piece
-            switch(piece)
+            switch (piece)
             {
                 case (Part)'n':
+                    if(mazeGrid[nextRow, nextCol].isValid())
+                    {
+
+                    }
                     mazeGrid[currentCell.Row + 2, currentCell.Col + 1].IsLegal = true;
                     mazeGrid[currentCell.Row + 2, currentCell.Col - 1].IsLegal = true;
                     mazeGrid[currentCell.Row + 1, currentCell.Col + 2].IsLegal = true;
@@ -72,6 +76,22 @@ namespace ChessMaze
                     break;
             }
             mazeGrid[currentCell.Row, currentCell.Col].Occupied = true;
+        }
+
+        public Cell SetCurrentCell(int currentRow, int currentCol)
+        {
+            Cell currentCell = this.mazeGrid[currentRow, currentCol];
+            // get x and y co-ords and check they're are within the board
+            if (currentCell.isValid())
+            {
+                return currentCell;
+            } 
+            else
+            {
+                Console.WriteLine("Col and Row number must be between 0 - 7");
+                return currentCell;
+            }
+            
         }
     }
 }

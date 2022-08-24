@@ -12,7 +12,7 @@ namespace ChessMaze
             printBoard(newBoard);
 
             // Set the co-ordinates for the current piece/cell
-            Cell currentCell = setCurrentCell();
+            Cell currentCell = newBoard.SetCurrentCell(0, 0);
             currentCell.Occupied = true;
 
             // calc all legal moves from current piece
@@ -23,18 +23,6 @@ namespace ChessMaze
 
             // close on next key press
             Console.ReadLine();
-        }
-
-        private static Cell setCurrentCell()
-        {
-            // get x and y co-ords from user and return the cell location
-            Console.WriteLine("Enter the current row number");
-            int currentRow = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Enter the current row number");
-            int currentCol = int.Parse(Console.ReadLine());
-
-            return newBoard.mazeGrid[currentRow, currentCol];
         }
 
         private static void printBoard(Board newBoard)
@@ -50,7 +38,7 @@ namespace ChessMaze
                     {
                         Console.Write('X');
                     }
-                    else if (c.IsLegal == true)
+                    else if (c.IsLegal == true && c.isValid())
                     {
                         Console.Write('+');
                     }

@@ -18,5 +18,18 @@ namespace ChessMaze
             Row = x;
             Col = y;
         }
+
+        public bool isValid()
+        {
+            if ((this.Col >= 0 & this.Col < 8) & (this.Row >= 0 & this.Row < 8))
+            {
+                return true;
+            } 
+            else
+            {
+                this.IsLegal = false;
+                return false;
+            }
+        }
     }
 }
