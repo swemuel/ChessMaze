@@ -8,6 +8,7 @@ namespace ChessMaze
 {
     public enum Part
     {
+		// pieces
         Empty = (int)'E',
 		King = (int)'K',		
 		Rook = (int)'R',

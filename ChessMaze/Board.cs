@@ -14,6 +14,8 @@ namespace ChessMaze
         // this is a 2d array of cells (like a chess board)
         public Cell[,] mazeGrid { get; set; }
 
+        public Cell[,] nextCell { get; set; }
+
         // Constructor
         public Board (int size)
         {
@@ -35,7 +37,8 @@ namespace ChessMaze
 
         public void NextLegalMove (int nextRow, int nextCol, Cell currentCell, Part piece)
         {
-            //reset board
+            nextCell = new Cell[nextRow, nextCol];
+            //reset Board
             for (int x = 0; x < Size; x++)
             {
                 for (int y = 0; y < Size; y++)
@@ -49,18 +52,32 @@ namespace ChessMaze
             switch (piece)
             {
                 case (Part)'n':
-                    if(mazeGrid[nextRow, nextCol].isValid())
-                    {
 
+                    //var targetCell = new Cell { Row = currentCell.Row + 2, Col = currentCell.Col - 1 };
+                    //if targetCell.isValid()
+
+                    int[,] targetPositions = new int[,]
+                    {
+                        {  2, -1 },
+                        {  2,  1 },
+                        {  1,  2 },
+                        {  1, -2 },
+                        { -1,  2 },
+                        { -1, -2 },
+                        { -2,  1 },
+                        { -2, -1 }
+                    };
+
+               
+                    for (var i = 0; i < targetPositions.GetLength(0); ++i)
+                    {
+                        if ((currentCell.Row + targetPositions[i, 0] >= 0) & (currentCell.Row + targetPositions[i, 0] < Size) 
+                            & (currentCell.Col + targetPositions[i, 1] >= 0) & (currentCell.Col + targetPositions[i, 1] < Size))
+                        {
+                            mazeGrid[currentCell.Row + targetPositions[i, 0], currentCell.Col + targetPositions[i, 1]].IsLegal = true;
+                        }            
                     }
-                    mazeGrid[currentCell.Row + 2, currentCell.Col + 1].IsLegal = true;
-                    mazeGrid[currentCell.Row + 2, currentCell.Col - 1].IsLegal = true;
-                    mazeGrid[currentCell.Row + 1, currentCell.Col + 2].IsLegal = true;
-                    mazeGrid[currentCell.Row + 1, currentCell.Col - 2].IsLegal = true;
-                    mazeGrid[currentCell.Row - 1, currentCell.Col + 2].IsLegal = true;
-                    mazeGrid[currentCell.Row - 1, currentCell.Col - 2].IsLegal = true;
-                    mazeGrid[currentCell.Row - 2, currentCell.Col + 1].IsLegal = true;
-                    mazeGrid[currentCell.Row - 2, currentCell.Col - 1].IsLegal = true;
+      
                     break;
 
                 case (Part)'b':
