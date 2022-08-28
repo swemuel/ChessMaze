@@ -12,11 +12,11 @@ namespace ChessMaze
             printBoard(newBoard);
 
             // Set the co-ordinates for the current piece/cell
-            Cell currentCell = newBoard.SetCurrentCell(4, 7);
+            Cell currentCell = newBoard.SetCurrentCell(4, 4);
             currentCell.Occupied = true;
 
             // calc all legal moves from current piece
-            newBoard.NextLegalMove(7, 6, currentCell, (Part)'n');
+            newBoard.NextLegalMove(4, 4, currentCell, (Part)'r');
 
             // Display board with entered current cell + legal moves
             printBoard(newBoard);

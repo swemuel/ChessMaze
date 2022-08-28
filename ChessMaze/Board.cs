@@ -87,9 +87,39 @@ namespace ChessMaze
                     break;
 
                 case (Part)'k':
+                    targetPositions = new int[,]
+                    {
+                        {  1, -1 },
+                        {  1,  1 },
+                        {  1,  0 },
+                        { -1, -1 },
+                        { -1,  1 },
+                        { -1,  0 },
+                        {  0,  1 },
+                        {  0, -1 }
+                    };
+
+
+                    for (var i = 0; i < targetPositions.GetLength(0); ++i)
+                    {
+                        if ((currentCell.Row + targetPositions[i, 0] >= 0) & (currentCell.Row + targetPositions[i, 0] < Size)
+                            & (currentCell.Col + targetPositions[i, 1] >= 0) & (currentCell.Col + targetPositions[i, 1] < Size))
+                        {
+                            mazeGrid[currentCell.Row + targetPositions[i, 0], currentCell.Col + targetPositions[i, 1]].IsLegal = true;
+                        }
+                    }
                     break;
 
                 case (Part)'r':
+                    for(var i = 0; i < Size; i++)
+                    {
+                        mazeGrid[currentCell.Row, i].IsLegal = true;
+                    }
+                    for(var i = 0; i < Size; i++)
+                    {
+                        mazeGrid[i, currentCell.Col].IsLegal = true;
+                    }
+
                     break;
             }
             mazeGrid[currentCell.Row, currentCell.Col].Occupied = true;
