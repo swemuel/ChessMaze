@@ -11,8 +11,11 @@ namespace ChessMaze
             // Display empty chess board
             printBoard(newBoard);
 
+            // Reset Board
+            newBoard.SetStartGame();
+
             // Set the co-ordinates for the current piece/cell
-            Cell currentCell = newBoard.SetStartGame(3, 3);
+            Cell currentCell = newBoard.SetCurrentCell(3, 1);
   
             // Set pieces on board
             newBoard.SetOccupiedPiece(2, 1, (Part)'N');
@@ -29,9 +32,26 @@ namespace ChessMaze
             newBoard.SetOccupiedPiece(6, 6, (Part)'N');
 
             // calc all legal moves from current piece
-            newBoard.NextLegalMove(currentCell, (Part)'q');
+            newBoard.NextLegalMove(currentCell, currentCell.Piece);
 
             // Display board with entered current cell + legal moves
+            printBoard(newBoard);
+
+
+            // Intial board state complete - can begin next move
+
+
+            // 
+            // set next move 
+            Cell nextCell = newBoard.SetNextMove(1, 3, currentCell);
+
+            //
+            newBoard.ResetLegalCells();
+
+            //calc new legal moves
+            newBoard.NextLegalMove(nextCell, nextCell.Piece);
+
+            // Display board with next move
             printBoard(newBoard);
 
             // close on next key press

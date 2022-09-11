@@ -39,7 +39,7 @@ namespace ChessMaze
             // display legal moves for each piece
             switch (piece)
             {
-                case (Part)'n':
+                case (Part)'N':
 
                     //var targetCell = new Cell { Row = currentCell.Row + 2, Col = currentCell.Col - 1 };
                     //if targetCell.isValid()
@@ -68,7 +68,7 @@ namespace ChessMaze
       
                     break;
 
-                case (Part)'b':
+                case (Part)'B':
                     for (var i = 0; i < Size; ++i)
                     {
                         if ((currentCell.Row + i >= 0) & (currentCell.Row + i < Size)
@@ -139,7 +139,7 @@ namespace ChessMaze
                     }
                     break;
 
-                case (Part)'q':
+                case (Part)'Q':
 
                     // Diagonal movement
                     for (var i = 0; i < Size; ++i)
@@ -270,7 +270,7 @@ namespace ChessMaze
                     }
                     break;
 
-                case (Part)'k':
+                case (Part)'K':
                     targetPositions = new int[,]
                     {
                         {  1, -1 },
@@ -294,7 +294,7 @@ namespace ChessMaze
                     }
                     break;
 
-                case (Part)'r':
+                case (Part)'R':
                     // left and down
                     for (int i = 0; i < Size - currentCell.Row; i++)
                     {
@@ -356,7 +356,7 @@ namespace ChessMaze
             mazeGrid[currentCell.Row, currentCell.Col].playerCell = true;
         }
 
-        public Cell SetStartGame(int currentRow, int currentCol)
+        public void SetStartGame()
         {
             //reset Board
             for (int x = 0; x < Size; x++)
@@ -367,7 +367,21 @@ namespace ChessMaze
                     mazeGrid[x, y].IsLegal = false;
                 }
             }
+        }
 
+        public void ResetLegalCells()
+        {
+            for (int x = 0; x < Size; x++)
+            {
+                for (int y = 0; y < Size; y++)
+                {
+                    mazeGrid[x, y].IsLegal = false;
+                }
+            }
+        }
+
+        public Cell SetCurrentCell(int currentRow, int currentCol)
+        {
             Cell currentCell = this.mazeGrid[currentRow, currentCol];
 
             // get x and y co-ords and check they're are within the board
@@ -398,6 +412,26 @@ namespace ChessMaze
                 Console.WriteLine("Col and Row number must be between 0 - 7");
                 return occupiedCell;
             }
+        }
+
+        public Cell SetNextMove(int nextRow, int nextCol, Cell previousCell)
+        {
+            Cell nextCell = mazeGrid[nextRow, nextCol];
+            //setting previous cell to no longer be the player cell
+            previousCell.playerCell = false;
+            
+            // Checks if next cell is a legal move and there is a piece there
+            if (nextCell.IsLegal & nextCell.Occupied)
+            {
+                SetCurrentCell(nextRow, nextCol);
+                return nextCell;
+            }
+            else
+            {
+                Console.WriteLine("Illegal Move");
+                return nextCell;
+            }
+            
         }
     }
 }

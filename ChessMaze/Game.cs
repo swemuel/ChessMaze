@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ChessMaze
 {
-    class Piece
-    {
-    }
+    //class Game : IGame
+  //  {
+        
+  //  }
 }
