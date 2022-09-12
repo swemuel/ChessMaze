@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace ChessMaze
 {
     class Program
     {
         static Board newBoard = new Board(8);
+        
+        
 
         static void Main(string[] args)
         {
@@ -16,10 +19,17 @@ namespace ChessMaze
 
             // Set the co-ordinates for the current piece/cell
             Cell currentCell = newBoard.SetCurrentCell(3, 1);
+
+            var timer = new Stopwatch();
+            timer.Start();
+
+            // Add to move count
+            newBoard.AddMoveCount();
   
             // Set pieces on board
             newBoard.SetOccupiedPiece(2, 1, (Part)'N');
             newBoard.SetOccupiedPiece(3, 1, (Part)'N');
+            newBoard.SetOccupiedPiece(1, 3, (Part)'N');
             newBoard.SetOccupiedPiece(4, 1, (Part)'N');
             newBoard.SetOccupiedPiece(5, 1, (Part)'N');
             newBoard.SetOccupiedPiece(1, 2, (Part)'N');
@@ -43,7 +53,10 @@ namespace ChessMaze
 
             // 
             // set next move 
-            Cell nextCell = newBoard.SetNextMove(1, 3, currentCell);
+            Cell nextCell = newBoard.SetNextMove(1, 2, currentCell);
+
+            // Add to move count
+            newBoard.AddMoveCount();
 
             //
             newBoard.ResetLegalCells();
@@ -51,8 +64,18 @@ namespace ChessMaze
             //calc new legal moves
             newBoard.NextLegalMove(nextCell, nextCell.Piece);
 
+            // Display move count
+            Console.WriteLine("Move Count: " + newBoard.MoveCount);
+
             // Display board with next move
             printBoard(newBoard);
+
+            timer.Stop();
+
+            TimeSpan timeTaken = timer.Elapsed;
+            string foo = "Time taken: " + timeTaken.ToString(@"m\:ss\.fff");
+
+            Console.WriteLine(foo);
 
             // close on next key press
             Console.ReadLine();

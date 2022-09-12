@@ -10,7 +10,7 @@ namespace ChessMaze
     {
         //Size of the maze board - will determine the number of cells
         public int Size { get; set; }
-
+        public int MoveCount;
         // this is a 2d array of cells (like a chess board)
         public Cell[,] mazeGrid { get; set; }
 
@@ -432,6 +432,13 @@ namespace ChessMaze
                 return nextCell;
             }
             
+        }
+
+        public int AddMoveCount()
+        {
+            MoveCount += 1;
+
+            return MoveCount;
         }
     }
 }
