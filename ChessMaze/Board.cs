@@ -35,6 +35,26 @@ namespace ChessMaze
 
         public void NextLegalMove (Cell currentCell, Part piece)
         {
+            int[,] up = new int[,]
+            {
+                { -1, 0 }
+            };
+
+            int[,] down = new int[,]
+            {
+                { 1, 0 }
+            };
+
+            int[,] left = new int[,]
+            {
+                { 0, -1 }
+            };
+
+            int[,] right = new int[,]
+            {
+                { 0, 1 }
+            };
+
             // if  mazeGrid[nextRow, nextCol] isValid {check if the knight can move there}
             // display legal moves for each piece
             switch (piece)
@@ -69,13 +89,13 @@ namespace ChessMaze
                     break;
 
                 case (Part)'B':
-                    for (var i = 0; i < Size; ++i)
+                    for (var i = 1; i < Size; ++i)
                     {
                         if ((currentCell.Row + i >= 0) & (currentCell.Row + i < Size)
                             & (currentCell.Col + i >= 0) & (currentCell.Col + i < Size))
                         {
                             // check if next cell is occupied - if so then set as legal and exit the for loop
-                            if (mazeGrid[currentCell.Row + i, currentCell.Col + i].Occupied)
+                            if (mazeGrid[currentCell.Row + i, currentCell.Col + i].Occupied == true)
                             {
                                 mazeGrid[currentCell.Row + i, currentCell.Col + i].IsLegal = true;
                                 break;
@@ -92,7 +112,7 @@ namespace ChessMaze
                             & (currentCell.Col - i >= 0) & (currentCell.Col - i < Size))
                         {
                             // check if next cell is occupied - if so then set as legal and exit the for loop
-                            if (mazeGrid[currentCell.Row - i, currentCell.Col - i].Occupied)
+                            if (mazeGrid[currentCell.Row - i, currentCell.Col - i].Occupied == true)
                             {
                                 mazeGrid[currentCell.Row - i, currentCell.Col - i].IsLegal = true;
                                 break;
@@ -142,7 +162,7 @@ namespace ChessMaze
                 case (Part)'Q':
 
                     // Diagonal movement
-                    for (var i = 0; i < Size; ++i)
+                    for (var i = 1; i < Size; ++i)
                     {
                         if ((currentCell.Row + i >= 0) & (currentCell.Row + i < Size)
                             & (currentCell.Col + i >= 0) & (currentCell.Col + i < Size))
@@ -159,7 +179,7 @@ namespace ChessMaze
                             }
                         }
                     }
-                    for (var i = 0; i < Size; ++i)
+                    for (var i = 1; i < Size; ++i)
                     {
                         if ((currentCell.Row - i >= 0) & (currentCell.Row - i < Size)
                             & (currentCell.Col - i >= 0) & (currentCell.Col - i < Size))
@@ -176,7 +196,7 @@ namespace ChessMaze
                             }
                         }
                     }
-                    for (var i = 0; i < Size; ++i)
+                    for (var i = 1; i < Size; ++i)
                     {
                         if ((currentCell.Row + i >= 0) & (currentCell.Row + i < Size)
                             & (currentCell.Col - i >= 0) & (currentCell.Col - i < Size))
@@ -193,7 +213,7 @@ namespace ChessMaze
                             }
                         }
                     }
-                    for (var i = 0; i < Size; ++i)
+                    for (var i = 1; i < Size; ++i)
                     {
                         if ((currentCell.Row - i >= 0) & (currentCell.Row - i < Size)
                             & (currentCell.Col + i >= 0) & (currentCell.Col + i < Size))
@@ -212,62 +232,73 @@ namespace ChessMaze
                     }
 
                     // Vertical and horizontal movement
-                    // left and down
-                    for (int i = 0; i < Size - currentCell.Row; i++)
+                    // DOWN
+                    for (int i = 1; i <= Size - currentCell.Row; i++)
                     {
-                        // check if next cell is occupied - if so then set as legal and exit the for loop
-                        if (mazeGrid[currentCell.Row + i, currentCell.Col].Occupied)
+                        // check if Down movement is valid
+                        if (currentCell.Row + i <= Size - 1)
                         {
-                            mazeGrid[currentCell.Row + i, currentCell.Col].IsLegal = true;
-                            break;
-                        }
-                        else
-                        {
-                            mazeGrid[currentCell.Row + i, currentCell.Col].IsLegal = true;
-                        }
-
-                        for (int j = 0; j < currentCell.Col; j++)
-                        {
-                            // check if next cell is occupied - if so then set as legal and exit the for loop
-                            if (mazeGrid[currentCell.Row, currentCell.Col - j - 1].Occupied)
+                            // check if next cell is occupied
+                            if (mazeGrid[currentCell.Row + i, currentCell.Col].Occupied)
                             {
-                                mazeGrid[currentCell.Row, currentCell.Col - j - 1].IsLegal = true;
+                                mazeGrid[currentCell.Row + i, currentCell.Col].IsLegal = true;
                                 break;
                             }
                             else
                             {
-                                mazeGrid[currentCell.Row, currentCell.Col - j - 1].IsLegal = true;
+                                mazeGrid[currentCell.Row + i, currentCell.Col].IsLegal = true;
                             }
                         }
                     }
-                    //  right and up
-                    for (int i = 0; i < currentCell.Row; i++)
+
+                    // LEFT
+                    for (int j = 1; j < (currentCell.Col + 1); j++)
                     {
                         // check if next cell is occupied - if so then set as legal and exit the for loop
-                        if (mazeGrid[currentCell.Row - i - 1, currentCell.Col].Occupied)
+                        if (mazeGrid[currentCell.Row, currentCell.Col - j ].Occupied)
                         {
-                            mazeGrid[currentCell.Row - i - 1, currentCell.Col].IsLegal = true;
+                            mazeGrid[currentCell.Row, currentCell.Col - j ].IsLegal = true;
                             break;
                         }
                         else
                         {
-                            mazeGrid[currentCell.Row - i - 1, currentCell.Col].IsLegal = true;
+                            mazeGrid[currentCell.Row, currentCell.Col - j ].IsLegal = true;
                         }
-
-                        for (int j = 0; j < Size - currentCell.Col; j++)
+                    }
+                    
+                    //  UP
+                    for (int i = 1; i <= currentCell.Row; i++)
+                    {
+                        // check if Up movement is valid
+                        if (currentCell.Row - i >= 0)
                         {
-                            // check if next cell is occupied - if so then set as legal and exit the for loop
-                            if (mazeGrid[currentCell.Row, currentCell.Col + j].Occupied)
+                            // check if next cell is occupied
+                            if (mazeGrid[currentCell.Row - i, currentCell.Col].Occupied)
                             {
-                                mazeGrid[currentCell.Row, currentCell.Col + j].IsLegal = true;
+                                mazeGrid[currentCell.Row - i, currentCell.Col].IsLegal = true;
                                 break;
                             }
                             else
                             {
-                                mazeGrid[currentCell.Row, currentCell.Col + j].IsLegal = true;
+                                mazeGrid[currentCell.Row - i, currentCell.Col].IsLegal = true;
                             }
                         }
                     }
+                    //RIGHT
+                    for (int j = 1; j < Size - currentCell.Col; j++)
+                    {
+                        // check if next cell is occupied - if so then set as legal and exit the for loop
+                        if (mazeGrid[currentCell.Row, currentCell.Col + j].Occupied)
+                        {
+                            mazeGrid[currentCell.Row, currentCell.Col + j].IsLegal = true;
+                            break;
+                        }
+                        else
+                        {
+                            mazeGrid[currentCell.Row, currentCell.Col + j].IsLegal = true;
+                        }
+                    }
+                    
                     break;
 
                 case (Part)'K':
@@ -296,59 +327,16 @@ namespace ChessMaze
 
                 case (Part)'R':
                     // left and down
-                    for (int i = 0; i < Size - currentCell.Row; i++)
+
+                    for (var i = 0; i < Size - currentCell.Row; ++i)
                     {
-                        // check if next cell is occupied - if so then set as legal and exit the for loop
-                        if (mazeGrid[currentCell.Row + i, currentCell.Col].Occupied)
+                        if (currentCell.Row + up[i, 0] >= 0)
                         {
-                            mazeGrid[currentCell.Row + i, currentCell.Col].IsLegal = true;
-                            break;
+                            mazeGrid[currentCell.Row + up[i, 0], currentCell.Col + up[i, 1]].IsLegal = true;
                         }
                         else
                         {
-                            mazeGrid[currentCell.Row + i, currentCell.Col].IsLegal = true;
-                        }
-
-                        for (int j = 0; j < currentCell.Col; j++)
-                        {
-                            // check if next cell is occupied - if so then set as legal and exit the for loop
-                            if (mazeGrid[currentCell.Row, currentCell.Col - j - 1].Occupied)
-                            {
-                                mazeGrid[currentCell.Row, currentCell.Col - j - 1].IsLegal = true;
-                                break;
-                            }
-                            else
-                            {
-                                mazeGrid[currentCell.Row, currentCell.Col - j - 1].IsLegal = true;
-                            }
-                        }
-                    }
-                    //  right and up
-                    for (int i = 0; i < currentCell.Row; i++)
-                     {
-                        // check if next cell is occupied - if so then set as legal and exit the for loop
-                        if (mazeGrid[currentCell.Row - i - 1, currentCell.Col].Occupied)
-                        {
-                            mazeGrid[currentCell.Row - i - 1, currentCell.Col].IsLegal = true;
                             break;
-                        }
-                        else
-                        {
-                            mazeGrid[currentCell.Row - i - 1, currentCell.Col].IsLegal = true;
-                        }
-
-                        for (int j = 0; j < Size - currentCell.Col; j++)
-                        {
-                            // check if next cell is occupied - if so then set as legal and exit the for loop
-                            if (mazeGrid[currentCell.Row, currentCell.Col + j].Occupied)
-                            {
-                                mazeGrid[currentCell.Row, currentCell.Col + j].IsLegal = true;
-                                break;
-                            }
-                            else
-                            {
-                                mazeGrid[currentCell.Row, currentCell.Col + j].IsLegal = true;
-                            }
                         }
                     }
                     break;

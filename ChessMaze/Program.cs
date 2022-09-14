@@ -18,7 +18,7 @@ namespace ChessMaze
             newBoard.SetStartGame();
 
             // Set the co-ordinates for the current piece/cell
-            Cell currentCell = newBoard.SetCurrentCell(3, 1);
+            Cell currentCell = newBoard.SetCurrentCell(3, 3);
 
             var timer = new Stopwatch();
             timer.Start();
@@ -29,17 +29,16 @@ namespace ChessMaze
             // Set pieces on board
             newBoard.SetOccupiedPiece(2, 1, (Part)'N');
             newBoard.SetOccupiedPiece(3, 1, (Part)'N');
-            newBoard.SetOccupiedPiece(1, 3, (Part)'N');
+            newBoard.SetOccupiedPiece(3, 3, (Part)'Q');
             newBoard.SetOccupiedPiece(4, 1, (Part)'N');
             newBoard.SetOccupiedPiece(5, 1, (Part)'N');
             newBoard.SetOccupiedPiece(1, 2, (Part)'N');
-            newBoard.SetOccupiedPiece(1, 4, (Part)'B');
+            newBoard.SetOccupiedPiece(0, 4, (Part)'B');
             newBoard.SetOccupiedPiece(2, 6, (Part)'B');
             newBoard.SetOccupiedPiece(4, 6, (Part)'N');
             newBoard.SetOccupiedPiece(6, 2, (Part)'B');
             newBoard.SetOccupiedPiece(6, 3, (Part)'Q');
             newBoard.SetOccupiedPiece(6, 4, (Part)'K');
-            newBoard.SetOccupiedPiece(6, 6, (Part)'N');
 
             // calc all legal moves from current piece
             newBoard.NextLegalMove(currentCell, currentCell.Piece);
