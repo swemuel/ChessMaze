@@ -13,6 +13,8 @@ namespace ChessMaze
         public int MoveCount;
         // this is a 2d array of cells (like a chess board)
         public Cell[,] mazeGrid { get; set; }
+        public Cell playerCell { get; set; }
+        public Cell finalCell { get; set; }
 
         // Constructor
         public Board (int size)
@@ -227,7 +229,7 @@ namespace ChessMaze
 
         public void NextLegalMove (Cell currentCell, Part piece)
         {
-            // if  mazeGrid[nextRow, nextCol] isValid {check if the knight can move there}
+            ResetLegalCells();
             // display legal moves for each piece
             switch (piece)
             {
@@ -255,7 +257,6 @@ namespace ChessMaze
                     RookMovement(currentCell);
                     break;
             }
-            mazeGrid[currentCell.Row, currentCell.Col].playerCell = true;
         }
 
         public void SetStartGame()
@@ -269,6 +270,7 @@ namespace ChessMaze
                     mazeGrid[x, y].IsLegal = false;
                 }
             }
+            MoveCount = 0;
         }
 
         public void ResetLegalCells()
@@ -284,18 +286,17 @@ namespace ChessMaze
 
         public Cell SetCurrentCell(int currentRow, int currentCol)
         {
-            Cell currentCell = this.mazeGrid[currentRow, currentCol];
+            playerCell = this.mazeGrid[currentRow, currentCol];
 
             // get x and y co-ords and check they're are within the board
-            if (currentCell.isValid())
+            if (playerCell.isValid())
             {
-                currentCell.playerCell = true;
-                return currentCell;
+                return playerCell;
             } 
             else
             {
                 Console.WriteLine("Col and Row number must be between 0 - 7");
-                return currentCell;
+                return playerCell;
             }
         }
 
@@ -316,27 +317,31 @@ namespace ChessMaze
             }
         }
 
-        public Cell SetNextMove(int nextRow, int nextCol, Cell previousCell)
+        public Cell SetNextMove(int nextRow, int nextCol)
         {
-            Cell nextCell = mazeGrid[nextRow, nextCol];
-            //setting previous cell to no longer be the player cell
-            previousCell.playerCell = false;
+            playerCell = mazeGrid[nextRow, nextCol];
             
             // Checks if next cell is a legal move and there is a piece there
-            if (nextCell.IsLegal & nextCell.Occupied)
+            if (playerCell.IsLegal & playerCell.Occupied)
             {
                 SetCurrentCell(nextRow, nextCol);
-                return nextCell;
+                return playerCell;
             }
             else
             {
                 Console.WriteLine("Illegal Move");
-                return nextCell;
+                return playerCell;
             }
             
         }
 
-        public int AddMoveCount()
+        public Cell SetFinalCell(int finalRow, int finalCol)
+        {
+            finalCell = mazeGrid[finalRow, finalCol];
+            return finalCell;
+        }
+
+        public int AddToMoveCount()
         {
             MoveCount += 1;
 

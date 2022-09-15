@@ -13,8 +13,6 @@ namespace ChessMaze
         public bool Occupied { get; set; }
         public bool IsLegal { get; set; }
         public Part Piece { get; set; }
-        
-        public bool playerCell;
 
         public Cell(int x, int y)
         {

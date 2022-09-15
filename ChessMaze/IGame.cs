@@ -2,11 +2,12 @@
 {
     public interface IGame
     {
-        void Move(Direction moveDirection);
+        void Move();
         int GetMoveCount();
         void Undo();
         void Restart();
         bool IsFinished();
-        void Load(string newLevel);
+        void Start();
+        void Load();
     }
 }
