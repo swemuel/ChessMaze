@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace ChessMaze
 {
-    class Game : IGame
+    public class Game : IGame
     {
 
         static Board newBoard = new Board(8);
