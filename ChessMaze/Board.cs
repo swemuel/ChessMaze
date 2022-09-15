@@ -14,6 +14,7 @@ namespace ChessMaze
         // this is a 2d array of cells (like a chess board)
         public Cell[,] mazeGrid { get; set; }
         public Cell playerCell { get; set; }
+        public Cell prevCell { get; set; }
         public Cell finalCell { get; set; }
 
         // Constructor
@@ -319,6 +320,7 @@ namespace ChessMaze
 
         public Cell SetNextMove(int nextRow, int nextCol)
         {
+            prevCell = playerCell;
             playerCell = mazeGrid[nextRow, nextCol];
             
             // Checks if next cell is a legal move and there is a piece there
@@ -330,6 +332,7 @@ namespace ChessMaze
             else
             {
                 Console.WriteLine("Illegal Move");
+                playerCell = prevCell;
                 return playerCell;
             }
             
@@ -344,6 +347,13 @@ namespace ChessMaze
         public int AddToMoveCount()
         {
             MoveCount += 1;
+
+            return MoveCount;
+        }
+
+        public int MinusMoveCount()
+        {
+            MoveCount -= 1;
 
             return MoveCount;
         }

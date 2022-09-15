@@ -37,7 +37,7 @@ namespace ChessMaze
 
         public void Move()
         {
-
+            // Input for next move
             Console.WriteLine("Enter next Row");
             int nextRow = int.Parse(Console.ReadLine());
 
@@ -46,24 +46,32 @@ namespace ChessMaze
 
             Cell nextCell = newBoard.SetNextMove(nextRow, nextCol);
 
+            // Calc next legal moves
             newBoard.NextLegalMove(nextCell, nextCell.Piece);
+
+            // Increase move count by 1
             newBoard.AddToMoveCount();
+
+            // Display board
             Program.printBoard(newBoard);
+
+            //Display Movecount
             GetMoveCount();
+            Console.WriteLine("");
 
-            
-
-            
-           
             // If not finished prompt for next move
             if (!IsFinished())
             {
                 // Acting as a temp reset button
-                Console.WriteLine("Press R to Restart Or any other key to continue");
-                string r = Console.ReadLine();
-                if (r == "R" || r == "r")
+                Console.WriteLine("Press: R = Restart, U = Undo, Any other key = continue");
+                string nextAction = Console.ReadLine();
+                if (nextAction == "R" || nextAction == "r")
                 {
                     Restart();
+                }
+                else if (nextAction == "U" || nextAction == "u")
+                {
+                    Undo();
                 }
                 else
                 {
@@ -76,14 +84,12 @@ namespace ChessMaze
                 Console.WriteLine("Congrats, You Win!");
                 timer.Stop();
                 TimeSpan timeTaken = timer.Elapsed;
-                string timeString = "Time taken: " + timeTaken.ToString(@"m\:ss\.fff");
+                string timeString = "Time taken: " + timeTaken.ToString(@"m\:ss");
 
                 Console.WriteLine(timeString);
                 Console.WriteLine("Press any key to exit");
                 Console.ReadKey();
             }
-                
-            
         }
 
         public void Load()
@@ -108,9 +114,28 @@ namespace ChessMaze
             Console.WriteLine("Move Count: " + newBoard.MoveCount);
             return newBoard.MoveCount;
         }
+
         public void Undo()
         {
+            Cell prevCell = newBoard.prevCell;
 
+            newBoard.SetCurrentCell(prevCell.Row, prevCell.Col);
+
+            // Calc next legal moves
+            newBoard.NextLegalMove(prevCell, prevCell.Piece);
+
+            // Increase move count by 1
+            newBoard.MinusMoveCount();
+
+            // Display board
+            Program.printBoard(newBoard);
+
+            //Display Movecount
+            GetMoveCount();
+            Console.WriteLine("");
+
+            // Next move
+            Move();
         }
 
         public void Restart()

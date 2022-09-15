@@ -5,8 +5,6 @@ namespace ChessMaze
 {
     class Program
     {
-        static Board newBoard = new Board(8);
-
         static Game newGame = new Game();
 
         static void Main(string[] args)
