@@ -10,8 +10,8 @@ namespace ChessMaze
     public class Game : IGame
     {
 
-        static Board newBoard = new Board(8);
-        Stopwatch timer = new Stopwatch();
+        public static Board newBoard = new Board(8);
+        public Stopwatch timer = new Stopwatch();
 
         public void Start()
         {
@@ -30,12 +30,22 @@ namespace ChessMaze
             newBoard.NextLegalMove(currentCell, currentCell.Piece);
 
             // Display board with entered current cell + legal moves
-            Program.printBoard(newBoard);
-            
-            Move();
+            //Program.printBoard(newBoard);
+
+            //SelectNextMove();
         }
 
-        public void Move()
+        public Cell GetPlayerCell()
+        {
+            return newBoard.playerCell;
+        }
+
+        public Cell GetFinalCell()
+        {
+            return newBoard.finalCell;
+        }
+
+        public void SelectFirstMove()
         {
             // Input for next move
             Console.WriteLine("Enter next Row");
@@ -44,6 +54,11 @@ namespace ChessMaze
             Console.WriteLine("Enter next Column");
             int nextCol = int.Parse(Console.ReadLine());
 
+            Move(nextRow, nextCol);
+        }
+
+        public void Move(int nextRow, int nextCol)
+        {
             Cell nextCell = newBoard.SetNextMove(nextRow, nextCol);
 
             // Calc next legal moves
@@ -58,8 +73,11 @@ namespace ChessMaze
             //Display Movecount
             GetMoveCount();
             Console.WriteLine("");
+        }
 
+        public void SetNextMove() { 
             // If not finished prompt for next move
+            
             if (!IsFinished())
             {
                 // Acting as a temp reset button
@@ -75,23 +93,27 @@ namespace ChessMaze
                 }
                 else
                 {
-                    Move();
+                    SelectFirstMove();
                 }
             }
             // If finished display message, time taken, moves taken and close program
             else
             {
-                Console.WriteLine("Congrats, You Win!");
-                timer.Stop();
-                TimeSpan timeTaken = timer.Elapsed;
-                string timeString = "Time taken: " + timeTaken.ToString(@"m\:ss");
-
-                Console.WriteLine(timeString);
+                End();
+                Console.WriteLine(GetTime());
                 Console.WriteLine("Press any key to exit");
                 Console.ReadKey();
             }
         }
 
+        public string GetTime()
+        {
+            timer.Stop();
+            TimeSpan timeTaken = timer.Elapsed;
+            string timeString = "Time taken: " + timeTaken.ToString(@"m\:ss");
+            return timeString;
+        }
+            
         public void Load()
         {
             // Set the co-ordinates for the current piece/cell
@@ -128,14 +150,14 @@ namespace ChessMaze
             newBoard.MinusMoveCount();
 
             // Display board
-            Program.printBoard(newBoard);
+           // Program.printBoard(newBoard);
 
             //Display Movecount
             GetMoveCount();
-            Console.WriteLine("");
+            //Console.WriteLine("");
 
             // Next move
-            Move();
+            //SelectFirstMove();
         }
 
         public void Restart()
@@ -153,8 +175,11 @@ namespace ChessMaze
             {
                 return false;
             }
-            
         }
 
+        public string End()
+        {
+            return "Congrats, You Win!";
+        }
     }
 }

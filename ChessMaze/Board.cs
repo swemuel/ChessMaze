@@ -288,17 +288,8 @@ namespace ChessMaze
         public Cell SetCurrentCell(int currentRow, int currentCol)
         {
             playerCell = this.mazeGrid[currentRow, currentCol];
-
-            // get x and y co-ords and check they're are within the board
-            if (playerCell.isValid())
-            {
-                return playerCell;
-            } 
-            else
-            {
-                Console.WriteLine("Col and Row number must be between 0 - 7");
-                return playerCell;
-            }
+            
+            return playerCell;
         }
 
         public Cell SetOccupiedPiece(int occupiedRow, int occupiedCol, Part piece)
@@ -331,7 +322,7 @@ namespace ChessMaze
             }
             else
             {
-                Console.WriteLine("Illegal Move");
+                //Console.WriteLine("Illegal Move");
                 playerCell = prevCell;
                 return playerCell;
             }
@@ -357,5 +348,6 @@ namespace ChessMaze
 
             return MoveCount;
         }
+
     }
 }
