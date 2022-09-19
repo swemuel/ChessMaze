@@ -10,7 +10,7 @@ namespace ChessMaze
     public class Game : IGame
     {
 
-        public static Board newBoard = new Board(8);
+        public static Boar newBoard = new Boar(8);
         public Stopwatch timer = new Stopwatch();
 
         public void Start()
@@ -45,7 +45,8 @@ namespace ChessMaze
             return newBoard.finalCell;
         }
 
-        public void SelectFirstMove()
+        // takes user input fo rnext move
+        public void InputNextMove()
         {
             // Input for next move
             Console.WriteLine("Enter next Row");
@@ -57,6 +58,7 @@ namespace ChessMaze
             Move(nextRow, nextCol);
         }
 
+        // handles movement with input params from InputNextMove()
         public void Move(int nextRow, int nextCol)
         {
             Cell nextCell = newBoard.SetNextMove(nextRow, nextCol);
@@ -75,6 +77,7 @@ namespace ChessMaze
             Console.WriteLine("");
         }
 
+        // Checks for Restart or Undo
         public void SetNextMove() { 
             // If not finished prompt for next move
             
@@ -93,7 +96,7 @@ namespace ChessMaze
                 }
                 else
                 {
-                    SelectFirstMove();
+                    InputNextMove();
                 }
             }
             // If finished display message, time taken, moves taken and close program
@@ -119,6 +122,7 @@ namespace ChessMaze
             // Set the co-ordinates for the current piece/cell
             newBoard.SetCurrentCell(0, 0);
 
+            newBoard.prevCell = newBoard.mazeGrid[0,0];
             // Set final cell
             newBoard.SetFinalCell(2, 2);
 
@@ -129,6 +133,11 @@ namespace ChessMaze
             newBoard.SetOccupiedPiece(2, 2, (Part)'K');
             newBoard.SetOccupiedPiece(2, 0, (Part)'B');
             newBoard.SetOccupiedPiece(2, 1, (Part)'B');
+        }
+
+        public void AddPiece(int row, int col, Part piece)
+        {
+            newBoard.SetOccupiedPiece(row, col, piece);
         }
 
         public int GetMoveCount()

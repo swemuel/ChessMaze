@@ -9,11 +9,12 @@
         bool IsFinished();
         void Start();
         void Load();
-        void SelectFirstMove();
+        void InputNextMove();
         Cell GetPlayerCell();
         void SetNextMove();
         Cell GetFinalCell();
         string GetTime();
         string End();
+        void AddPiece(int row, int col, Part piece);
     }
 }

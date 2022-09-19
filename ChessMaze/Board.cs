@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace ChessMaze
 {
-    public class Board
+    public class Boar
     {
         //Size of the maze board - will determine the number of cells
         public int Size { get; set; }
+
         public int MoveCount;
         // this is a 2d array of cells (like a chess board)
         public Cell[,] mazeGrid { get; set; }
@@ -326,7 +327,6 @@ namespace ChessMaze
                 playerCell = prevCell;
                 return playerCell;
             }
-            
         }
 
         public Cell SetFinalCell(int finalRow, int finalCol)

@@ -6,7 +6,7 @@ namespace ChessMazeTest
     [TestClass]
     public class BoardTests
     {
-        private Board theBoard = new Board(8);
+        private Boar theBoard = new Boar(8);
         private Game theGame = new Game();
 
 
@@ -67,9 +67,9 @@ namespace ChessMazeTest
 
 
         // Feature 3 - Must have correct movement for rook
-        Board SetBoardWithPart(Part piece)
+        Boar SetBoardWithPart(Part piece)
         {
-            Board newBoard = theBoard;
+            Boar newBoard = theBoard;
             Cell newCell = newBoard.SetCurrentCell(3, 3);
             newCell.Piece = piece;
             newBoard.NextLegalMove(newCell, newCell.Piece);
@@ -79,7 +79,7 @@ namespace ChessMazeTest
         [TestMethod]
         public void TestCorrectRookMovement()
         {
-            Board newBoard = SetBoardWithPart(Part.Rook);
+            Boar newBoard = SetBoardWithPart(Part.Rook);
 
             //Testing horizontal and vertical limits
             bool expectedLegalCell1 = newBoard.mazeGrid[0, 3].IsLegal;
@@ -96,7 +96,7 @@ namespace ChessMazeTest
         [TestMethod]
         public void TestIncorrectRookMovement()
         {
-            Board newBoard = SetBoardWithPart(Part.Rook);
+            Boar newBoard = SetBoardWithPart(Part.Rook);
 
             //Testing all the diagonals
             bool expectedIllegalCell1 = newBoard.mazeGrid[4, 4].IsLegal;
@@ -115,7 +115,7 @@ namespace ChessMazeTest
         [TestMethod]
         public void TestCorrectBishopMovement()
         {
-            Board newBoard = SetBoardWithPart(Part.Bishop);
+            Boar newBoard = SetBoardWithPart(Part.Bishop);
 
             //Testing all the diagonals
             bool expectedLegalCell1 = newBoard.mazeGrid[7, 7].IsLegal;
@@ -132,7 +132,7 @@ namespace ChessMazeTest
         [TestMethod]
         public void TestIncorrectBishopMovement()
         {
-            Board newBoard = SetBoardWithPart(Part.Bishop);
+            Boar newBoard = SetBoardWithPart(Part.Bishop);
 
             //Testing horzontal/vertical positions
             bool expectedIllegalCell1 = newBoard.mazeGrid[3, 7].IsLegal;
@@ -151,7 +151,7 @@ namespace ChessMazeTest
         [TestMethod]
         public void TestCorrectKnightMovement()
         {
-            Board newBoard = SetBoardWithPart(Part.Knight);
+            Boar newBoard = SetBoardWithPart(Part.Knight);
 
             bool expectedLegalCell1 = newBoard.mazeGrid[1, 4].IsLegal;
             bool expectedLegalCell2 = newBoard.mazeGrid[1, 2].IsLegal;
@@ -176,7 +176,7 @@ namespace ChessMazeTest
         [TestMethod]
         public void TestIncorrectKnightMovement()
         {
-            Board newBoard = SetBoardWithPart(Part.Knight);
+            Boar newBoard = SetBoardWithPart(Part.Knight);
 
             //Testing cells surrounding current cell
             bool expectedIllegalCell1 = newBoard.mazeGrid[3, 4].IsLegal;
@@ -195,7 +195,7 @@ namespace ChessMazeTest
         [TestMethod]
         public void TestCorrectQueenMovement()
         {
-            Board newBoard = SetBoardWithPart(Part.Queen);
+            Boar newBoard = SetBoardWithPart(Part.Queen);
 
             //Testing all the diagonals
             bool expectedLegalCell1 = newBoard.mazeGrid[7, 7].IsLegal;
@@ -222,7 +222,7 @@ namespace ChessMazeTest
         [TestMethod]
         public void TestIncorrectQueenMovement()
         {
-            Board newBoard = SetBoardWithPart(Part.Queen);
+            Boar newBoard = SetBoardWithPart(Part.Queen);
 
             //Testing cells That the queen won't reach
             bool expectedIllegalCell1 = newBoard.mazeGrid[1, 4].IsLegal;
@@ -241,7 +241,7 @@ namespace ChessMazeTest
         [TestMethod]
         public void TestCorrectKingMovement()
         {
-            Board newBoard = SetBoardWithPart(Part.King);
+            Boar newBoard = SetBoardWithPart(Part.King);
 
             bool expectedLegalCell1 = newBoard.mazeGrid[3, 4].IsLegal;
             bool expectedLegalCell2 = newBoard.mazeGrid[3, 2].IsLegal;
@@ -265,7 +265,7 @@ namespace ChessMazeTest
         [TestMethod]
         public void TestIncorrectKingMovement()
         {
-            Board newBoard = SetBoardWithPart(Part.King);
+            Boar newBoard = SetBoardWithPart(Part.King);
 
             //Testing 2 steps from current isn't legal
             bool expectedIllegalCell1 = newBoard.mazeGrid[5, 5].IsLegal;
@@ -292,6 +292,38 @@ namespace ChessMazeTest
             Cell currentcell = theGame.GetPlayerCell();
 
             int expectedPreResetCol = 1;
+            int expectedPreResetRow = 2;
+            int actualPreResetCol = preResetCell.Col;
+            int actualPreResetRow = preResetCell.Row;
+
+            int expectedResetCol = 0;
+            int expectedResetRow = 0;
+            int actualCol = currentcell.Col;
+            int actualRow = currentcell.Row;
+
+            Assert.AreEqual(expectedPreResetCol, actualPreResetCol);
+            Assert.AreEqual(expectedPreResetRow, actualPreResetRow);
+
+            Assert.AreEqual(expectedResetCol, actualCol);
+            Assert.AreEqual(expectedResetRow, actualRow);
+        }
+
+        // Once the game is complete you should still be able to reset
+        [TestMethod]
+        public void TestResetButtonWorksAfterCompletion()
+        {
+            theGame.Start();
+            theGame.Move(0, 2);
+            theGame.Move(2, 1);
+            theGame.Move(1, 2);
+            theGame.Move(2, 2);
+            theGame.End();
+            Cell preResetCell = theGame.GetPlayerCell();
+
+            theGame.Restart();
+            Cell currentcell = theGame.GetPlayerCell();
+
+            int expectedPreResetCol = 2;
             int expectedPreResetRow = 2;
             int actualPreResetCol = preResetCell.Col;
             int actualPreResetRow = preResetCell.Row;
@@ -338,6 +370,33 @@ namespace ChessMazeTest
             Assert.AreEqual(expectedResetRow, actualRow);
         }
 
+        // test that the undo button doesnt break the start position
+        [TestMethod]
+        public void TestUndoButtonWorksOnlyWhereApplicable()
+        {
+            theGame.Start();
+            Cell preResetCell = theGame.GetPlayerCell();
+
+            theGame.Undo();
+            Cell currentcell = theGame.GetPlayerCell();
+
+            int expectedPreResetCol = 0;
+            int expectedPreResetRow = 0;
+            int actualPreResetCol = preResetCell.Col;
+            int actualPreResetRow = preResetCell.Row;
+
+            int expectedResetCol = 0;
+            int expectedResetRow = 0;
+            int actualCol = currentcell.Col;
+            int actualRow = currentcell.Row;
+
+            Assert.AreEqual(expectedPreResetCol, actualPreResetCol);
+            Assert.AreEqual(expectedPreResetRow, actualPreResetRow);
+
+            Assert.AreEqual(expectedResetCol, actualCol);
+            Assert.AreEqual(expectedResetRow, actualRow);
+        }
+
 
         // Feature 12 - Must have end co-ordinates
         [TestMethod]
@@ -354,6 +413,21 @@ namespace ChessMazeTest
 
             Assert.AreEqual(expectedFinalRow, actualFinalRow);
             Assert.AreEqual(expectedFinalCol, actualFinalCol);
+        }
+
+        // test game ends at end position (2,2)
+        [TestMethod]
+        public void GameEndsAtEndPosition()
+        {
+            theGame.Start();
+            theGame.Move(0,2);
+            theGame.Move(2, 1);
+            theGame.Move(1, 2);
+            theGame.Move(2, 2);
+
+            bool gameEnded = theGame.IsFinished();
+
+            Assert.IsTrue(gameEnded);
         }
 
 
@@ -374,10 +448,26 @@ namespace ChessMazeTest
             Assert.AreEqual(expectedStartCol, actualStartCol);
         }
 
+        [TestMethod]
+        public void TestNotStartPosition()
+        {
+            theGame.Start();
+            Cell startCell = theGame.GetPlayerCell();
+
+            int unexpectedStartRow = 1;
+            int unexpectedStartCol = 1;
+
+            int actualStartRow = startCell.Row;
+            int actualStartCol = startCell.Col;
+
+            Assert.AreNotEqual(unexpectedStartRow, actualStartRow);
+            Assert.AreNotEqual(unexpectedStartCol, actualStartCol);
+        }
+
 
         // Feature 10 - Must have Move Counter
         [TestMethod]
-        public void TestMoveCounter()
+        public void Test2MoveCounter()
         {
             theGame.Start();
             SetNextMove(0, 2); 
@@ -385,6 +475,22 @@ namespace ChessMazeTest
             int moveCount = theGame.GetMoveCount();
 
             int expectedMoveCount = 2;
+            int actualMoveCount = moveCount;
+
+            Assert.AreEqual(expectedMoveCount, actualMoveCount);
+        }
+
+        [TestMethod]
+        public void Test4MoveCounter()
+        {
+            theGame.Start();
+            SetNextMove(0, 2);
+            SetNextMove(2, 1);
+            SetNextMove(1, 2);
+            SetNextMove(2, 2);
+            int moveCount = theGame.GetMoveCount();
+
+            int expectedMoveCount = 4;
             int actualMoveCount = moveCount;
 
             Assert.AreEqual(expectedMoveCount, actualMoveCount);
@@ -406,6 +512,25 @@ namespace ChessMazeTest
             Assert.AreEqual(expectedTimeTaken, actualTimeTaken);
         }
 
+        [TestMethod]
+        public void TestLongerTimeTaken()
+        {
+            theGame.Start();
+            SetNextMove(0, 2);
+            SetNextMove(2, 1);
+            SetNextMove(1, 2);
+            System.Threading.Thread.Sleep(2000);
+            SetNextMove(2, 2);
+            
+            
+            string timeTaken = theGame.GetTime();
+
+            string expectedTimeTaken = "Time taken: 0:02";
+            string actualTimeTaken = timeTaken;
+
+            Assert.AreEqual(expectedTimeTaken, actualTimeTaken);
+        }
+
 
         // Feature 15 - Must acknowledge level completion
         [TestMethod]
@@ -416,16 +541,25 @@ namespace ChessMazeTest
             SetNextMove(2, 1);
             SetNextMove(1, 2);
             SetNextMove(2, 2);
-            string levelComplete = theGame.End();
+            bool levelComplete = theGame.IsFinished();
 
-            string expectedWinString = "Congrats, You Win!";
-            string actualWinString = levelComplete;
+            Assert.IsTrue(levelComplete);
+        }
 
-            Assert.AreEqual(expectedWinString, actualWinString);
+        [TestMethod]
+        public void TestLevelIncomplete()
+        {
+            theGame.Start();
+            SetNextMove(0, 2);
+            SetNextMove(2, 1);
+            SetNextMove(1, 2);
+            bool levelComplete = theGame.IsFinished();
+
+            Assert.IsFalse(levelComplete);
         }
 
 
-        // Must not accept empty cell
+        // Feature 9 - Must not accept empty cell
         [TestMethod]
         public void TestEmptyCellRejection()
         {
@@ -447,10 +581,32 @@ namespace ChessMazeTest
             Assert.AreEqual(expectedCurrentCol, actualCurrentCol);
         }
 
-
-        // Must not accept Incorrect movement
         [TestMethod]
-        public void TestIncorrectDirectionRejection()
+        public void TestOccupiedCellAcception()
+        {
+            theGame.Start();
+            SetNextMove(0, 2);
+            SetNextMove(2, 1);
+            SetNextMove(1, 2);
+            theGame.AddPiece(2, 3, (Part)'R');
+            SetNextMove(2, 3); 
+            Cell currentCell = theGame.GetPlayerCell();
+
+            // playerCell should be able to move to (2,3)
+            int expectedCurrentRow = 2;
+            int expectedCurrentCol = 3;
+
+            int actualCurrentRow = currentCell.Row;
+            int actualCurrentCol = currentCell.Col;
+
+            Assert.AreEqual(expectedCurrentRow, actualCurrentRow);
+            Assert.AreEqual(expectedCurrentCol, actualCurrentCol);
+        }
+
+
+        // Feature 8 - Must not accept Incorrect movement
+        [TestMethod]
+        public void TestIncorrectQueenDirectionRejection()
         {
             theGame.Start();
             SetNextMove(0, 2);
@@ -462,6 +618,26 @@ namespace ChessMazeTest
             // playerCell should not change to empty cell
             int expectedCurrentRow = 1;
             int expectedCurrentCol = 2;
+
+            int actualCurrentRow = currentCell.Row;
+            int actualCurrentCol = currentCell.Col;
+
+            Assert.AreEqual(expectedCurrentRow, actualCurrentRow);
+            Assert.AreEqual(expectedCurrentCol, actualCurrentCol);
+        }
+
+        [TestMethod]
+        public void TestIncorrectBishopDirectionRejection()
+        {
+            theGame.Start();
+            SetNextMove(0, 2);
+            SetNextMove(2, 1);
+            SetNextMove(0, 0); // occupied, but incorrect direction for bishop
+            Cell currentCell = theGame.GetPlayerCell();
+
+            // playerCell should not change to empty cell
+            int expectedCurrentRow = 2;
+            int expectedCurrentCol = 1;
 
             int actualCurrentRow = currentCell.Row;
             int actualCurrentCol = currentCell.Col;
