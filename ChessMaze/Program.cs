@@ -13,7 +13,7 @@ namespace ChessMaze
             newGame.Start();
         }
 
-        public static void printBoard(Boar newBoard)
+        public static void printBoard(Board newBoard)
         {
             // display chess board: 'X' = current piece, '+' = legal next move, . = empty
             for (int x = 0; x < newBoard.Size; x++)

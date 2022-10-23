@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessMaze
 {
-    public class Boar
+    public class Board
     {
         //Size of the maze board - will determine the number of cells
         public int Size { get; set; }

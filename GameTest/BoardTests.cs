@@ -6,7 +6,7 @@ namespace ChessMazeTest
     [TestClass]
     public class BoardTests
     {
-        private Boar theBoard = new Boar(8);
+        private Board theBoard = new Board(8);
         private Game theGame = new Game();
 
 
@@ -67,9 +67,9 @@ namespace ChessMazeTest
 
 
         // Feature 3 - Must have correct movement for rook
-        Boar SetBoardWithPart(Part piece)
+        Board SetBoardWithPart(Part piece)
         {
-            Boar newBoard = theBoard;
+            Board newBoard = theBoard;
             Cell newCell = newBoard.SetCurrentCell(3, 3);
             newCell.Piece = piece;
             newBoard.NextLegalMove(newCell, newCell.Piece);
@@ -79,7 +79,7 @@ namespace ChessMazeTest
         [TestMethod]
         public void TestCorrectRookMovement()
         {
-            Boar newBoard = SetBoardWithPart(Part.Rook);
+            Board newBoard = SetBoardWithPart(Part.Rook);
 
             //Testing horizontal and vertical limits
             bool expectedLegalCell1 = newBoard.mazeGrid[0, 3].IsLegal;
@@ -96,9 +96,9 @@ namespace ChessMazeTest
         [TestMethod]
         public void TestIncorrectRookMovement()
         {
-            Boar newBoard = SetBoardWithPart(Part.Rook);
+            Board newBoard = SetBoardWithPart(Part.Rook);
 
-            //Testing all the diagonals
+            // Testing all the diagonals
             bool expectedIllegalCell1 = newBoard.mazeGrid[4, 4].IsLegal;
             bool expectedIllegalCell2 = newBoard.mazeGrid[2, 4].IsLegal;
             bool expectedIllegalCell3 = newBoard.mazeGrid[2, 4].IsLegal;
@@ -115,7 +115,7 @@ namespace ChessMazeTest
         [TestMethod]
         public void TestCorrectBishopMovement()
         {
-            Boar newBoard = SetBoardWithPart(Part.Bishop);
+            Board newBoard = SetBoardWithPart(Part.Bishop);
 
             //Testing all the diagonals
             bool expectedLegalCell1 = newBoard.mazeGrid[7, 7].IsLegal;
@@ -132,7 +132,7 @@ namespace ChessMazeTest
         [TestMethod]
         public void TestIncorrectBishopMovement()
         {
-            Boar newBoard = SetBoardWithPart(Part.Bishop);
+            Board newBoard = SetBoardWithPart(Part.Bishop);
 
             //Testing horzontal/vertical positions
             bool expectedIllegalCell1 = newBoard.mazeGrid[3, 7].IsLegal;
@@ -151,7 +151,7 @@ namespace ChessMazeTest
         [TestMethod]
         public void TestCorrectKnightMovement()
         {
-            Boar newBoard = SetBoardWithPart(Part.Knight);
+            Board newBoard = SetBoardWithPart(Part.Knight);
 
             bool expectedLegalCell1 = newBoard.mazeGrid[1, 4].IsLegal;
             bool expectedLegalCell2 = newBoard.mazeGrid[1, 2].IsLegal;
@@ -176,7 +176,7 @@ namespace ChessMazeTest
         [TestMethod]
         public void TestIncorrectKnightMovement()
         {
-            Boar newBoard = SetBoardWithPart(Part.Knight);
+            Board newBoard = SetBoardWithPart(Part.Knight);
 
             //Testing cells surrounding current cell
             bool expectedIllegalCell1 = newBoard.mazeGrid[3, 4].IsLegal;
@@ -195,7 +195,7 @@ namespace ChessMazeTest
         [TestMethod]
         public void TestCorrectQueenMovement()
         {
-            Boar newBoard = SetBoardWithPart(Part.Queen);
+            Board newBoard = SetBoardWithPart(Part.Queen);
 
             //Testing all the diagonals
             bool expectedLegalCell1 = newBoard.mazeGrid[7, 7].IsLegal;
@@ -222,7 +222,7 @@ namespace ChessMazeTest
         [TestMethod]
         public void TestIncorrectQueenMovement()
         {
-            Boar newBoard = SetBoardWithPart(Part.Queen);
+            Board newBoard = SetBoardWithPart(Part.Queen);
 
             //Testing cells That the queen won't reach
             bool expectedIllegalCell1 = newBoard.mazeGrid[1, 4].IsLegal;
@@ -241,7 +241,7 @@ namespace ChessMazeTest
         [TestMethod]
         public void TestCorrectKingMovement()
         {
-            Boar newBoard = SetBoardWithPart(Part.King);
+            Board newBoard = SetBoardWithPart(Part.King);
 
             bool expectedLegalCell1 = newBoard.mazeGrid[3, 4].IsLegal;
             bool expectedLegalCell2 = newBoard.mazeGrid[3, 2].IsLegal;
@@ -265,7 +265,7 @@ namespace ChessMazeTest
         [TestMethod]
         public void TestIncorrectKingMovement()
         {
-            Boar newBoard = SetBoardWithPart(Part.King);
+            Board newBoard = SetBoardWithPart(Part.King);
 
             //Testing 2 steps from current isn't legal
             bool expectedIllegalCell1 = newBoard.mazeGrid[5, 5].IsLegal;

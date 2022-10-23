@@ -10,7 +10,7 @@ namespace ChessMaze
     public class Game : IGame
     {
 
-        public static Boar newBoard = new Boar(8);
+        public static Board newBoard = new Board(8);
         public Stopwatch timer = new Stopwatch();
 
         public void Start()
