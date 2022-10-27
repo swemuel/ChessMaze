@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "PSzO93pt7kWT3D7rp58igAuW+/IK/kyNyVDxif4DuJ8X2AJANHtY4sY9lLe4CNaybRWDjdL+DZ7e3Xh0IKagPw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\sammo\\OneDrive\\2022\\BCDE222\\ChessForm\\ChessForm.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sammo\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512"
+  ],
+  "logs": []
+}

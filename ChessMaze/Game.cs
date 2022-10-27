@@ -70,7 +70,7 @@ namespace ChessMaze
             newBoard.AddToMoveCount();
 
             // Display board
-            Program.printBoard(newBoard);
+            // Program.printBoard(newBoard);
 
             //Display Movecount
             GetMoveCount();

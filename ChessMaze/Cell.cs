@@ -21,9 +21,9 @@ namespace ChessMaze
         }
 
         //Checks the cell is on the board
-        public bool isValid()
+        public bool isValid(int size)
         {
-            if ((this.Col >= 0 & this.Col < 8) & (this.Row >= 0 & this.Row < 8))
+            if ((this.Col >= 0 & this.Col < size) & (this.Row >= 0 & this.Row < size))
             {
                 return true;
             } 

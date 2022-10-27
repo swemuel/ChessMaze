@@ -12,7 +12,7 @@ namespace ChessMaze
             // Display empty chess board
             newGame.Start();
         }
-
+        /*
         public static void printBoard(Board newBoard)
         {
             // display chess board: 'X' = current piece, '+' = legal next move, . = empty
@@ -69,5 +69,6 @@ namespace ChessMaze
 
             Console.WriteLine("====================");
         }
+        */
     }
 }

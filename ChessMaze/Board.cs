@@ -297,7 +297,7 @@ namespace ChessMaze
         {
             Cell occupiedCell = this.mazeGrid[occupiedRow, occupiedCol];
             // get x and y co-ords and check they're are within the board
-            if (occupiedCell.isValid())
+            if (occupiedCell.isValid(Size))
             {
                 occupiedCell.Piece = piece;
                 occupiedCell.Occupied = true;

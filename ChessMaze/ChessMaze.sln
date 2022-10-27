@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.32630.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessMaze", "ChessMaze.csproj", "{D401A4D2-49AE-482F-ABB4-9B7E91C7A613}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessMazeTest", "..\GameTest\ChessMazeTest.csproj", "{8442034F-AC0B-4F51-A30D-927DC41A94F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessMazeTest", "..\GameTest\ChessMazeTest.csproj", "{8442034F-AC0B-4F51-A30D-927DC41A94F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessForm", "..\ChessForm\ChessForm.csproj", "{B4EE1973-D027-43CF-9A1A-7FD4CAF7257B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{8442034F-AC0B-4F51-A30D-927DC41A94F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8442034F-AC0B-4F51-A30D-927DC41A94F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8442034F-AC0B-4F51-A30D-927DC41A94F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4EE1973-D027-43CF-9A1A-7FD4CAF7257B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4EE1973-D027-43CF-9A1A-7FD4CAF7257B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4EE1973-D027-43CF-9A1A-7FD4CAF7257B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4EE1973-D027-43CF-9A1A-7FD4CAF7257B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
