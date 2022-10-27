@@ -125,6 +125,7 @@ namespace ChessForm
             this.BoardTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.BoardTable.Size = new System.Drawing.Size(502, 555);
             this.BoardTable.TabIndex = 1;
+            this.BoardTable.Click += new System.EventHandler(this.BoardTable_Click);
             this.BoardTable.Paint += new System.Windows.Forms.PaintEventHandler(this.BoardTable_Paint);
             // 
             // pictureBox3
