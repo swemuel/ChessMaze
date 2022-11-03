@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace ChessForm
 {
     public partial class Form1 : Form
     {
+        public int[,] clickedCell { get; set; }
         public Form1()
         {
             InitializeComponent();
@@ -35,6 +37,50 @@ namespace ChessForm
         private void BoardTable_Click(object sender, EventArgs e)
         {
 
+        }
+
+        public void Start(int startCol, int startRow, int endCol, int endRow)
+        {
+            foreach (Control control in BoardTable.Controls)
+            {
+                PictureBox piece = control as PictureBox;
+
+                if (this.BoardTable.GetRow(piece) == startRow && this.BoardTable.GetColumn(piece) == startCol)
+                {
+                    piece.BackColor = Color.AliceBlue;
+                }
+                else if (this.BoardTable.GetRow(piece) == endRow && this.BoardTable.GetColumn(piece) == endCol)
+                {
+                    piece.BackColor = Color.Orange;
+                }
+            }
+        }
+
+        public void pictureBox3_Click(object sender, EventArgs e)
+        {
+            int pieceCol = getCol(sender);
+            int pieceRow = getRow(sender);
+            int[,] pieceCell = new int[,] { { pieceCol }, { pieceRow } };
+
+            clickedCell = pieceCell;
+        }
+
+        private int getCol(object sender)
+        {
+            PictureBox clickedPiece = sender as PictureBox;
+            int pieceCol = this.BoardTable.GetColumn(clickedPiece);
+            Trace.WriteLine("Piece Column: " + pieceCol.ToString());
+
+            return pieceCol;
+        }
+
+        private int getRow(object sender)
+        {
+            PictureBox clickedPiece = sender as PictureBox;
+            int pieceRow = this.BoardTable.GetRow(clickedPiece);
+            Trace.WriteLine("Piece Row: " + pieceRow.ToString());
+
+            return pieceRow;
         }
     }
 }

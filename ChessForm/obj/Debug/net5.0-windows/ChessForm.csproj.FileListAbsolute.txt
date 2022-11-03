@@ -17,3 +17,10 @@ C:\Users\sammo\OneDrive\2022\BCDE222\ChessForm\obj\Debug\net5.0-windows\ChessFor
 C:\Users\sammo\OneDrive\2022\BCDE222\ChessForm\obj\Debug\net5.0-windows\ref\ChessForm.dll
 C:\Users\sammo\OneDrive\2022\BCDE222\ChessForm\obj\Debug\net5.0-windows\ChessForm.pdb
 C:\Users\sammo\OneDrive\2022\BCDE222\ChessForm\obj\Debug\net5.0-windows\ChessForm.genruntimeconfig.cache
+C:\Users\sammo\OneDrive\2022\BCDE222\ChessForm\bin\Debug\net5.0-windows\ChessMaze.deps.json
+C:\Users\sammo\OneDrive\2022\BCDE222\ChessForm\bin\Debug\net5.0-windows\ChessMaze.runtimeconfig.json
+C:\Users\sammo\OneDrive\2022\BCDE222\ChessForm\bin\Debug\net5.0-windows\ChessMaze.runtimeconfig.dev.json
+C:\Users\sammo\OneDrive\2022\BCDE222\ChessForm\bin\Debug\net5.0-windows\ChessMaze.exe
+C:\Users\sammo\OneDrive\2022\BCDE222\ChessForm\bin\Debug\net5.0-windows\ChessMaze.dll
+C:\Users\sammo\OneDrive\2022\BCDE222\ChessForm\bin\Debug\net5.0-windows\ChessMaze.pdb
+C:\Users\sammo\OneDrive\2022\BCDE222\ChessForm\obj\Debug\net5.0-windows\ChessForm.csproj.CopyComplete

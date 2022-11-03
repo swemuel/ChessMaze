@@ -6,14 +6,6 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "ChessForm/1.0.0": {
-        "dependencies": {
-          "ChessMaze": "1.0.0"
-        },
-        "runtime": {
-          "ChessForm.dll": {}
-        }
-      },
       "ChessMaze/1.0.0": {
         "runtime": {
           "ChessMaze.dll": {}
@@ -22,11 +14,6 @@
     }
   },
   "libraries": {
-    "ChessForm/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "ChessMaze/1.0.0": {
       "type": "project",
       "serviceable": false,

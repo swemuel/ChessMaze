@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net5.0-windows7.0": {}
+    "net5.0-windows7.0": {
+      "ChessMaze/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/ChessMaze.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ChessMaze.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "ChessMaze/1.0.0": {
+      "type": "project",
+      "path": "../ChessMaze/ChessMaze.csproj",
+      "msbuildProject": "../ChessMaze/ChessMaze.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net5.0-windows7.0": []
+    "net5.0-windows7.0": [
+      "ChessMaze >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\sammo\\.nuget\\packages\\": {}
@@ -33,7 +52,11 @@
       "frameworks": {
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\sammo\\OneDrive\\2022\\BCDE222\\ChessMaze\\ChessMaze.csproj": {
+              "projectPath": "C:\\Users\\sammo\\OneDrive\\2022\\BCDE222\\ChessMaze\\ChessMaze.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -57,7 +80,7 @@
         "warn": true,
         "downloadDependencies": [
           {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "name": "Microsoft.NETCore.App.Host.win-x86",
             "version": "[5.0.13, 5.0.13]"
           }
         ],

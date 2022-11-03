@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ChessMaze;
 
 namespace ChessForm
 {
@@ -17,7 +18,7 @@ namespace ChessForm
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            new GameController(new Form1(), new Game()).Go();
         }
     }
 }

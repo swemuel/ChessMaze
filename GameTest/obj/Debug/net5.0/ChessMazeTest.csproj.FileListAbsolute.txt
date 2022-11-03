@@ -1,9 +1,5 @@
 C:\Users\sammo\OneDrive\2022\BCDE222\GameTest\bin\Debug\net5.0\CoverletSourceRootsMapping
 C:\Users\sammo\OneDrive\2022\BCDE222\GameTest\bin\Debug\net5.0\testhost.dll
-C:\Users\sammo\OneDrive\2022\BCDE222\GameTest\bin\Debug\net5.0\ChessMaze.deps.json
-C:\Users\sammo\OneDrive\2022\BCDE222\GameTest\bin\Debug\net5.0\ChessMaze.runtimeconfig.json
-C:\Users\sammo\OneDrive\2022\BCDE222\GameTest\bin\Debug\net5.0\ChessMaze.runtimeconfig.dev.json
-C:\Users\sammo\OneDrive\2022\BCDE222\GameTest\bin\Debug\net5.0\ChessMaze.exe
 C:\Users\sammo\OneDrive\2022\BCDE222\GameTest\bin\Debug\net5.0\testhost.exe
 C:\Users\sammo\OneDrive\2022\BCDE222\GameTest\bin\Debug\net5.0\Microsoft.TestPlatform.PlatformAbstractions.dll
 C:\Users\sammo\OneDrive\2022\BCDE222\GameTest\bin\Debug\net5.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
@@ -104,3 +100,7 @@ C:\Users\sammo\OneDrive\2022\BCDE222\GameTest\obj\Debug\net5.0\ChessMazeTest.dll
 C:\Users\sammo\OneDrive\2022\BCDE222\GameTest\obj\Debug\net5.0\ref\ChessMazeTest.dll
 C:\Users\sammo\OneDrive\2022\BCDE222\GameTest\obj\Debug\net5.0\ChessMazeTest.pdb
 C:\Users\sammo\OneDrive\2022\BCDE222\GameTest\obj\Debug\net5.0\ChessMazeTest.genruntimeconfig.cache
+C:\Users\sammo\OneDrive\2022\BCDE222\GameTest\bin\Debug\net5.0\ChessMaze.deps.json
+C:\Users\sammo\OneDrive\2022\BCDE222\GameTest\bin\Debug\net5.0\ChessMaze.runtimeconfig.json
+C:\Users\sammo\OneDrive\2022\BCDE222\GameTest\bin\Debug\net5.0\ChessMaze.runtimeconfig.dev.json
+C:\Users\sammo\OneDrive\2022\BCDE222\GameTest\bin\Debug\net5.0\ChessMaze.exe

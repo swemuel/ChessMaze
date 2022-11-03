@@ -3,17 +3,13 @@ C:\Users\sammo\OneDrive\2022\BCDE222\ChessMaze\obj\Debug\net5.0\ChessMaze.Genera
 C:\Users\sammo\OneDrive\2022\BCDE222\ChessMaze\obj\Debug\net5.0\ChessMaze.AssemblyInfoInputs.cache
 C:\Users\sammo\OneDrive\2022\BCDE222\ChessMaze\obj\Debug\net5.0\ChessMaze.AssemblyInfo.cs
 C:\Users\sammo\OneDrive\2022\BCDE222\ChessMaze\obj\Debug\net5.0\ChessMaze.csproj.CoreCompileInputs.cache
-C:\Users\sammo\OneDrive\2022\BCDE222\ChessMaze\bin\Debug\net5.0\ChessMaze.exe
 C:\Users\sammo\OneDrive\2022\BCDE222\ChessMaze\bin\Debug\net5.0\ChessMaze.deps.json
-C:\Users\sammo\OneDrive\2022\BCDE222\ChessMaze\bin\Debug\net5.0\ChessMaze.runtimeconfig.json
-C:\Users\sammo\OneDrive\2022\BCDE222\ChessMaze\bin\Debug\net5.0\ChessMaze.runtimeconfig.dev.json
 C:\Users\sammo\OneDrive\2022\BCDE222\ChessMaze\bin\Debug\net5.0\ChessMaze.dll
 C:\Users\sammo\OneDrive\2022\BCDE222\ChessMaze\bin\Debug\net5.0\ref\ChessMaze.dll
 C:\Users\sammo\OneDrive\2022\BCDE222\ChessMaze\bin\Debug\net5.0\ChessMaze.pdb
 C:\Users\sammo\OneDrive\2022\BCDE222\ChessMaze\obj\Debug\net5.0\ChessMaze.dll
 C:\Users\sammo\OneDrive\2022\BCDE222\ChessMaze\obj\Debug\net5.0\ref\ChessMaze.dll
 C:\Users\sammo\OneDrive\2022\BCDE222\ChessMaze\obj\Debug\net5.0\ChessMaze.pdb
-C:\Users\sammo\OneDrive\2022\BCDE222\ChessMaze\obj\Debug\net5.0\ChessMaze.genruntimeconfig.cache
 C:\Users\sam2564\source\repos\ChessMaze\ChessMaze\bin\Debug\net5.0\ChessMaze.exe
 C:\Users\sam2564\source\repos\ChessMaze\ChessMaze\bin\Debug\net5.0\ChessMaze.deps.json
 C:\Users\sam2564\source\repos\ChessMaze\ChessMaze\bin\Debug\net5.0\ChessMaze.runtimeconfig.json
@@ -46,3 +42,7 @@ C:\Users\sam2564\Source\Repos\swemuel\ChessMaze\ChessMaze\bin\Debug\net5.0\Chess
 C:\Users\sam2564\Source\Repos\swemuel\ChessMaze\ChessMaze\bin\Debug\net5.0\ref\ChessMaze.dll
 C:\Users\sam2564\Source\Repos\swemuel\ChessMaze\ChessMaze\bin\Debug\net5.0\ChessMaze.pdb
 C:\Users\sam2564\Source\Repos\swemuel\ChessMaze\ChessMaze\obj\Debug\net5.0\ChessMaze.genruntimeconfig.cache
+C:\Users\sammo\OneDrive\2022\BCDE222\ChessMaze\bin\Debug\net5.0\ChessMaze.exe
+C:\Users\sammo\OneDrive\2022\BCDE222\ChessMaze\bin\Debug\net5.0\ChessMaze.runtimeconfig.json
+C:\Users\sammo\OneDrive\2022\BCDE222\ChessMaze\bin\Debug\net5.0\ChessMaze.runtimeconfig.dev.json
+C:\Users\sammo\OneDrive\2022\BCDE222\ChessMaze\obj\Debug\net5.0\ChessMaze.genruntimeconfig.cache
