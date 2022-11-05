@@ -18,7 +18,11 @@ namespace ChessForm
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            new GameController(new Form1(), new Game()).Go();
+
+            using Form1 frm1 = new();
+            frm1.SetController(new GameController(frm1, new Game()));
+
+            Application.Run(frm1);
         }
     }
 }

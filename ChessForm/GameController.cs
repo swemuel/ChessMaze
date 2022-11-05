@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ using ChessMaze;
 
 namespace ChessForm
 {
-    class GameController
+    public class GameController
     {
         private Form1 _view;
         private Game _game;
@@ -22,7 +23,21 @@ namespace ChessForm
         public void Go()
         {
             _game.Start();
-            Application.Run(_view);
+            Trace.WriteLine(_game.GetPlayerCell().ToString());
+            Console.WriteLine(_game.GetFinalCell());
+            _view.Start(_game.GetPlayerCell()[0,0], _game.GetPlayerCell()[0, 1], _game.GetFinalCell()[0,0], _game.GetFinalCell()[0, 1]);
+        }
+
+        private void NextMove()
+        {
+            while (_game.GetPlayerCell() == _view.clickedCell)
+            {
+
+            }
+            _game.Move(_view.clickedCell[0, 0], _view.clickedCell[0, 1]);
+            _view.clickedCell = _game.Move(_view.clickedCell[0, 0], _view.clickedCell[0, 1]);
+            Console.WriteLine(_game.GetPlayerCell());
+            NextMove();  
         }
     }
 }

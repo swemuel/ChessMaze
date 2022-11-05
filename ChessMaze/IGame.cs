@@ -2,7 +2,7 @@
 {
     public interface IGame
     {
-        void Move(int nextRow, int nextCol);
+        int[,] Move(int nextRow, int nextCol);
         int GetMoveCount();
         void Undo();
         void Restart();
@@ -10,9 +10,9 @@
         void Start();
         void Load();
         void InputNextMove();
-        Cell GetPlayerCell();
+        int[,] GetPlayerCell();
         void SetNextMove();
-        Cell GetFinalCell();
+        int[,] GetFinalCell();
         string GetTime();
         string End();
         void AddPiece(int row, int col, Part piece);

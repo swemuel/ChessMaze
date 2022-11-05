@@ -35,14 +35,16 @@ namespace ChessMaze
             //SelectNextMove();
         }
 
-        public Cell GetPlayerCell()
+        public int[,] GetPlayerCell()
         {
-            return newBoard.playerCell;
+            int[,] playerCell = new int[,] { { newBoard.playerCell.Row, newBoard.playerCell.Col } };
+            return playerCell;
         }
 
-        public Cell GetFinalCell()
+        public int[,] GetFinalCell()
         {
-            return newBoard.finalCell;
+            int[,] finalCell = new int[,] { { newBoard.finalCell.Row, newBoard.finalCell.Col } };
+            return finalCell;
         }
 
         // takes user input fo rnext move
@@ -59,7 +61,7 @@ namespace ChessMaze
         }
 
         // handles movement with input params from InputNextMove()
-        public void Move(int nextRow, int nextCol)
+        public int[,] Move(int nextRow, int nextCol)
         {
             Cell nextCell = newBoard.SetNextMove(nextRow, nextCol);
 
@@ -75,6 +77,8 @@ namespace ChessMaze
             //Display Movecount
             GetMoveCount();
             Console.WriteLine("");
+
+            return GetPlayerCell();
         }
 
         // Checks for Restart or Undo

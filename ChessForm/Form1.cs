@@ -14,6 +14,8 @@ namespace ChessForm
     public partial class Form1 : Form
     {
         public int[,] clickedCell { get; set; }
+        public GameController Controller;
+
         public Form1()
         {
             InitializeComponent();
@@ -41,6 +43,8 @@ namespace ChessForm
 
         public void Start(int startCol, int startRow, int endCol, int endRow)
         {
+            clickedCell = new int[startRow, startCol];
+
             foreach (Control control in BoardTable.Controls)
             {
                 PictureBox piece = control as PictureBox;
@@ -56,12 +60,11 @@ namespace ChessForm
             }
         }
 
-        public void pictureBox3_Click(object sender, EventArgs e)
+        private void pictureBox3_Click(object sender, EventArgs e)
         {
             int pieceCol = getCol(sender);
             int pieceRow = getRow(sender);
             int[,] pieceCell = new int[,] { { pieceCol }, { pieceRow } };
-
             clickedCell = pieceCell;
         }
 
@@ -81,6 +84,16 @@ namespace ChessForm
             Trace.WriteLine("Piece Row: " + pieceRow.ToString());
 
             return pieceRow;
+        }
+
+        public void SetController(GameController controller)
+        {
+            Controller = controller;
+        }
+
+        private void start_game_Click(object sender, EventArgs e)
+        {
+            Controller.Go();
         }
     }
 }
