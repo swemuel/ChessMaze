@@ -11,6 +11,7 @@
         void Load();
         void InputNextMove();
         int[,] GetPlayerCell();
+        int[,] GetPrevCell();
         void SetNextMove();
         int[,] GetFinalCell();
         string GetTime();

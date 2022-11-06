@@ -34,6 +34,8 @@ namespace ChessForm
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.MovesLabel = new System.Windows.Forms.Label();
+            this.start_game = new System.Windows.Forms.Button();
+            this.EndMessage = new System.Windows.Forms.Label();
             this.BoardTable = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
@@ -41,7 +43,6 @@ namespace ChessForm
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.start_game = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.BoardTable.SuspendLayout();
@@ -74,6 +75,7 @@ namespace ChessForm
             this.flowLayoutPanel1.Controls.Add(this.label1);
             this.flowLayoutPanel1.Controls.Add(this.MovesLabel);
             this.flowLayoutPanel1.Controls.Add(this.start_game);
+            this.flowLayoutPanel1.Controls.Add(this.EndMessage);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -102,6 +104,24 @@ namespace ChessForm
             this.MovesLabel.Size = new System.Drawing.Size(13, 15);
             this.MovesLabel.TabIndex = 1;
             this.MovesLabel.Text = "0";
+            // 
+            // start_game
+            // 
+            this.start_game.Location = new System.Drawing.Point(3, 18);
+            this.start_game.Name = "start_game";
+            this.start_game.Size = new System.Drawing.Size(75, 23);
+            this.start_game.TabIndex = 2;
+            this.start_game.Text = "Start";
+            this.start_game.UseVisualStyleBackColor = true;
+            this.start_game.Click += new System.EventHandler(this.start_game_Click);
+            // 
+            // EndMessage
+            // 
+            this.EndMessage.AutoSize = true;
+            this.EndMessage.Location = new System.Drawing.Point(84, 15);
+            this.EndMessage.Name = "EndMessage";
+            this.EndMessage.Size = new System.Drawing.Size(0, 15);
+            this.EndMessage.TabIndex = 3;
             // 
             // BoardTable
             // 
@@ -206,16 +226,6 @@ namespace ChessForm
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
-            // start_game
-            // 
-            this.start_game.Location = new System.Drawing.Point(3, 18);
-            this.start_game.Name = "start_game";
-            this.start_game.Size = new System.Drawing.Size(75, 23);
-            this.start_game.TabIndex = 2;
-            this.start_game.Text = "Start";
-            this.start_game.UseVisualStyleBackColor = true;
-            this.start_game.Click += new System.EventHandler(this.start_game_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -253,6 +263,7 @@ namespace ChessForm
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label MovesLabel;
         private System.Windows.Forms.Button start_game;
+        private System.Windows.Forms.Label EndMessage;
     }
 }
 

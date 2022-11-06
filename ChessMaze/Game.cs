@@ -41,6 +41,12 @@ namespace ChessMaze
             return playerCell;
         }
 
+        public int[,] GetPrevCell()
+        {
+            int[,] prevCell = new int[,] { { newBoard.prevCell.Row, newBoard.prevCell.Col } };
+            return prevCell;
+        }
+
         public int[,] GetFinalCell()
         {
             int[,] finalCell = new int[,] { { newBoard.finalCell.Row, newBoard.finalCell.Col } };
@@ -67,10 +73,7 @@ namespace ChessMaze
 
             // Calc next legal moves
             newBoard.NextLegalMove(nextCell, nextCell.Piece);
-
-            // Increase move count by 1
-            newBoard.AddToMoveCount();
-
+            
             // Display board
             // Program.printBoard(newBoard);
 

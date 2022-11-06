@@ -23,21 +23,28 @@ namespace ChessForm
         public void Go()
         {
             _game.Start();
-            Trace.WriteLine(_game.GetPlayerCell().ToString());
-            Console.WriteLine(_game.GetFinalCell());
             _view.Start(_game.GetPlayerCell()[0,0], _game.GetPlayerCell()[0, 1], _game.GetFinalCell()[0,0], _game.GetFinalCell()[0, 1]);
         }
 
-        private void NextMove()
+        public void NextMove()
         {
-            while (_game.GetPlayerCell() == _view.clickedCell)
+            if (_game.IsFinished())
             {
-
+                _view.EndGame();
             }
-            _game.Move(_view.clickedCell[0, 0], _view.clickedCell[0, 1]);
-            _view.clickedCell = _game.Move(_view.clickedCell[0, 0], _view.clickedCell[0, 1]);
-            Console.WriteLine(_game.GetPlayerCell());
-            NextMove();  
+            else
+            {
+                int clickedRow = _view.clickedCell[0, 0];
+                int clickedCol = _view.clickedCell[0, 1];
+                _game.Move(clickedRow, clickedCol);
+                _view.clickedCell = _game.GetPlayerCell();
+                _view.NextMove(_game.GetPrevCell());
+                _view.UpdateMoveCount(_game.GetMoveCount());
+                if (_game.IsFinished())
+                {
+                    _view.EndGame();
+                }
+            }
         }
     }
 }

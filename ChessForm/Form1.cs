@@ -43,7 +43,9 @@ namespace ChessForm
 
         public void Start(int startCol, int startRow, int endCol, int endRow)
         {
-            clickedCell = new int[startRow, startCol];
+            clickedCell = new int[1,2] { { startRow, startCol } };
+
+            UpdateMoveCount(0);
 
             foreach (Control control in BoardTable.Controls)
             {
@@ -57,15 +59,41 @@ namespace ChessForm
                 {
                     piece.BackColor = Color.Orange;
                 }
+                else
+                {
+                    piece.BackColor = Color.FromArgb(200, 230, 255);
+                }
             }
+            Trace.WriteLine("Cell " + clickedCell.ToString());
+        }
+
+        public void NextMove(int[,] prevCell)
+        {
+            foreach (Control control in BoardTable.Controls)
+            {
+                PictureBox piece = control as PictureBox;
+                if (BoardTable.GetRow(piece) == clickedCell[0,0] && BoardTable.GetColumn(piece) == clickedCell[0, 1])
+                {
+                    piece.BackColor = Color.AliceBlue;
+                }
+                else if (BoardTable.GetRow(piece) == prevCell[0, 0] && BoardTable.GetColumn(piece) == prevCell[0, 1])
+                {
+                    piece.BackColor = Color.FromArgb( 200, 230, 255 );
+                }
+            }
+        }
+
+        public void UpdateMoveCount(int moveCount)
+        {
+            MovesLabel.Text = moveCount.ToString();
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             int pieceCol = getCol(sender);
             int pieceRow = getRow(sender);
-            int[,] pieceCell = new int[,] { { pieceCol }, { pieceRow } };
-            clickedCell = pieceCell;
+            clickedCell = new int[1, 2] { { pieceRow, pieceCol } }; ;
+            Controller.NextMove();
         }
 
         private int getCol(object sender)
@@ -94,6 +122,13 @@ namespace ChessForm
         private void start_game_Click(object sender, EventArgs e)
         {
             Controller.Go();
+            Button button = sender as Button;
+            button.Text = "Reset";
+        }
+
+        public void EndGame()
+        {
+            EndMessage.Text = "Maze Complete!";
         }
     }
 }

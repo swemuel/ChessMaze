@@ -319,6 +319,7 @@ namespace ChessMaze
             if (playerCell.IsLegal & playerCell.Occupied)
             {
                 SetCurrentCell(nextRow, nextCol);
+                AddToMoveCount();
                 return playerCell;
             }
             else
