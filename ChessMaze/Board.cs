@@ -342,13 +342,5 @@ namespace ChessMaze
 
             return MoveCount;
         }
-
-        public int MinusMoveCount()
-        {
-            MoveCount -= 1;
-
-            return MoveCount;
-        }
-
     }
 }

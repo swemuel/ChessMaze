@@ -59,5 +59,15 @@ namespace ChessForm.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rook {
+            get {
+                object obj = ResourceManager.GetObject("rook", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

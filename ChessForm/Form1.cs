@@ -45,6 +45,8 @@ namespace ChessForm
         {
             clickedCell = new int[1,2] { { startRow, startCol } };
 
+            EndMessage.Text = "";
+
             UpdateMoveCount(0);
 
             foreach (Control control in BoardTable.Controls)
